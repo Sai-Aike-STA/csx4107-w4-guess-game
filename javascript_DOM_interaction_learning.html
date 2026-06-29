@@ -120,6 +120,7 @@
     action="https://teach-backend-fawn.vercel.app/api/product"
     method="POST"
     enctype="multipart/form-data"
+    onsubmit="handleSubmit(event)"
 >
     <fieldset>
         <legend>General Info</legend>
@@ -138,7 +139,7 @@
             <textarea
                 id="itemDescription"
                 name="itemDescription"
-                onkeyup="handleDescriptionKeyDown()"
+                onkeyup="handleDescriptionKeyDown(event)"
             ></textarea>
         </div>
 
@@ -193,9 +194,9 @@
                     id="pattaya"
                     name="availableStore[]"
                     value="Pattaya"
-                    checked 
+                    checked
                 >
-<!--            `checked` makes it checked by default-->
+                <!--            `checked` makes it checked by default-->
                 <label for="pattaya">Pattaya</label>
 
                 <input
@@ -246,7 +247,7 @@
     </fieldset>
 
     <div class="submit-row">
-        <button type="submit">Submit Form</button>
+        <button type="submit" onmouseover="handleMouseOver(event)">Submit Form</button>
     </div>
 </form>
 <script>
