@@ -247,7 +247,9 @@
     </fieldset>
 
     <div class="submit-row">
-        <button type="submit" onmouseover="handleMouseOver(event)">Submit Form</button>
+        <button type="submit" onmouseover="handleMouseOver(event)"
+                onmouseout="handleMouseOut(event)"
+        >Submit Form</button>
     </div>
 </form>
 <script>
@@ -266,6 +268,12 @@
         console.log("==> event: ", event);
         const target = event.target;
         target.style.color = "red";
+    }
+
+    function handleMouseOut(event) {
+        console.log("==> event: ", event);
+        const target = event.target;
+        target.style.color = "white";
     }
 
     const staffEmailObj = document.getElementById("staffEmail");

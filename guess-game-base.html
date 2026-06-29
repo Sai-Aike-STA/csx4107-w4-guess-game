@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Guess Game</title>
+    <!-- You may change the CSS location based on your file structure-->
+    <link rel="stylesheet" href="public/css/guesss-game.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <h2>Guess Game</h2>
+      <div style="margin-bottom: 10px">
+        Guess a number between 1 - 20, you have 5 chances.
+      </div>
+      <div class="input">
+        <input type="text" id="guess-value" name="guess-value" />
+        <button id="guess-btn">Guess!</button>
+        <button id="restart-btn">Restart</button>
+      </div>
+      <hr />
+      <div id="attempt-text" style="margin-bottom: 10px">
+        Attempt <span id="attempt"></span>/5
+      </div>
+      <div id="result"></div>
+    </div>
+  </body>
+</html>
