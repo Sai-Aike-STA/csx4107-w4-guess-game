@@ -9,8 +9,8 @@ const maxAttempt = 5;
 
 // Gets the HTML elements from the page using their IDs
 const guessInput = document.getElementById("guess-value");
-const guessButton = document.getElementById("guess-btn");
-const restartButton = document.getElementById("restart-btn");
+const guessButton = document.getElementById("guess-button");
+const restartButton = document.getElementById("restart-button");
 const attemptText = document.getElementById("attempt");
 const resultText = document.getElementById("result");
 
@@ -25,8 +25,8 @@ function initialSetup() {
     guessInput.value = "";
 
 // At the start, only the Restart button should be shown
-    guessButton.style.display = "none";
-    restartButton.style.display = "block";
+    guessButton.style.display = "none";  // none mean dont display
+    restartButton.style.display = "block";  // means to display
 
 // Attempt must start at 0/5
     attempt = 0;
@@ -66,10 +66,11 @@ function restartGame() {
 function guessNumber() {
     const inputValue = guessInput.value;
 
-// If the input is empty or not a number, do nothing
+    // If the input is empty or not a number, do nothing
     if (!isNumeric(inputValue)) {
         return;
     }
+
 
 // Convert the input from text into a number
     const guessValue = Number(inputValue);
