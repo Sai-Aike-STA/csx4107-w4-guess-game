@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Elements Assignment</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        form {
+            width: 100%;
+            max-width: 70rem;
+            box-sizing: border-box;
+        }
+
+        fieldset {
+            border: 0.1rem solid lightgray;
+            border-radius: 0.4rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem 1.25rem;
+            box-sizing: border-box;
+        }
+
+        legend {
+            padding: 0 0.25rem;
+        }
+
+        .form-row {
+            /* This makes the children inside .form-row line up horizontally instead of vertically. */
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.4rem 1rem;
+            /*extra space so the form doesnt look cramped*/
+            margin-bottom: 0.75rem;
+        }
+
+        .form-row > label {
+            flex: 0 0 12rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            max-width: 16rem;
+            min-width: 12rem;
+            height: 2rem;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            flex: 1 1 20rem;
+            min-width: 12rem;
+            min-height: 8rem;
+            font-size: 1rem;
+            padding: 0.4rem;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        select {
+            min-width: 10rem;
+            height: 2rem;
+            font-size: 1rem;
+            padding: 0.2rem;
+        }
+
+        .inline-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            flex: 1 1 20rem;
+            min-width: 12rem;
+        }
+
+        .inline-group label {
+            margin-right: 0.5rem;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 1rem;
+            height: 1rem;
+            margin: 0;
+        }
+
+        .submit-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            font-size: 1.1rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 0.4rem;
+            border: 0.1rem solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<form
+    action="https://teach-backend-fawn.vercel.app/api/product"
+    method="POST"
+    enctype="multipart/form-data"
+>
+    <fieldset>
+        <legend>General Info</legend>
+
+        <div class="form-row">
+            <label for="itemName">Item Name</label>
+            <input
+                type="text"
+                id="itemName"
+                name="itemName"
+            >
+        </div>
+
+        <div class="form-row">
+            <label for="itemDescription">Description</label>
+            <textarea
+                id="itemDescription"
+                name="itemDescription"
+                onkeyup="handleDescriptionKeyDown()"
+            ></textarea>
+        </div>
+
+        <div class="form-row">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+                <option value="notSpecified">Not Specified</option>
+                <option value="consumption">Consumption</option>
+                <option value="household">Household</option>
+                <option value="electronic">Electronic</option>
+                <option value="gadget">Gadget</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Misc.</legend>
+
+        <div class="form-row">
+            <label for="inventoryAmount">Inventory Amount</label>
+            <input
+                type="number"
+                id="inventoryAmount"
+                name="inventoryAmount"
+            >
+            <!--        input type number makes it so that non-numbers cannot be typed-->
+        </div>
+
+        <div class="form-row">
+            <label for="listPrice">List price</label>
+            <input
+                type="number"
+                id="listPrice"
+                name="listPrice"
+            >
+        </div>
+
+        <div class="form-row">
+            <label>Available Stores</label>
+
+            <div class="inline-group">
+                <input
+                    type="checkbox"
+                    id="bangkok"
+                    name="availableStore[]"
+                    value="Bangkok"
+                >
+                <label for="bangkok">Bangkok</label>
+
+                <input
+                    type="checkbox"
+                    id="pattaya"
+                    name="availableStore[]"
+                    value="Pattaya"
+                    checked 
+                >
+<!--            `checked` makes it checked by default-->
+                <label for="pattaya">Pattaya</label>
+
+                <input
+                    type="checkbox"
+                    id="phuket"
+                    name="availableStore[]"
+                    value="Phuket"
+                >
+                <label for="phuket">Phuket</label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label>Status</label>
+
+            <div class="inline-group">
+                <input
+                    type="radio"
+                    id="active"
+                    name="status"
+                    value="Active"
+                >
+                <label for="active">Active</label>
+
+                <input
+                    type="radio"
+                    id="inactive"
+                    name="status"
+                    value="Inactive"
+                >
+                <label for="inactive">Inactive</label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Staff</legend>
+
+        <div class="form-row">
+            <label for="staffEmail">Staff Email</label>
+            <input
+                type="email"
+                id="staffEmail"
+                name="staffEmail"
+                value="u6712122@au.edu"
+            >
+        </div>
+    </fieldset>
+
+    <div class="submit-row">
+        <button type="submit">Submit Form</button>
+    </div>
+</form>
+<script>
+
+    function handleDescriptionKeyDown(event) {
+        event.preventDefault();
+        console.log("==> Description field Keydown event: ", event)
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        console.log("==> Submit Form");
+    }
+
+    function handleMouseOver(event) {
+        console.log("==> event: ", event);
+        const target = event.target;
+        target.style.color = "red";
+    }
+
+    const staffEmailObj = document.getElementById("staffEmail");
+    const staffEmail = staffEmailObj.value;
+    console.log("==>", staffEmail);
+    const checkboxes = document.getElementsByName("availableStore[]")
+    console.log("==>", checkboxes)
+    console.log("==> checkboxes[0].checked = ", checkboxes[0].checked);
+    console.log("==> checkboxes[1].checked = ", checkboxes[1].checked);
+    console.log("==> checkboxes[2].checked = ", checkboxes[2].checked);
+    checkboxes[2].checked = true // using javascript to check the box
+
+</script>
+
+</body>
+</html>
